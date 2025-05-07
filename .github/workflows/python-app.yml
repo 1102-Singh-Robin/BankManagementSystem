@@ -48,9 +48,9 @@ jobs:
 
       - name: Clean previous build
         run: |
-          Remove-Item -Recurse -Force build, dist, __pycache__ -ErrorAction SilentlyContinue
-          Remove-Item -Force main.spec -ErrorAction SilentlyContinue
-          Write-Output "Cleaned"
+          rm -rf build dist __pycache__ main.spec || echo "Nothing to clean"
+          echo "Cleaned"
+
 
 
       - name: Build .exe using PyInstaller
