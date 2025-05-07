@@ -35,13 +35,14 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git remote remove origin
-          git remote add origin https://x-access-token:$env:GH_PAT@github.com/${{ github.repository }}
+          git remote add origin "https://x-access-token:$env:GH_PAT@github.com/${{ github.repository }}"
           git add coverage.txt
           git commit -m "Add coverage report [CI]" || echo "No changes"
           git push origin HEAD:main || echo "Push failed"
+
 
 
 
