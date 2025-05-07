@@ -48,8 +48,10 @@ jobs:
 
       - name: Clean previous build
         run: |
-          rmdir /s /q build dist __pycache__ 2>nul || echo "Cleaned"
-          del main.spec 2>nul || echo "No spec to delete"
+          Remove-Item -Recurse -Force build, dist, __pycache__ -ErrorAction SilentlyContinue
+          Remove-Item -Force main.spec -ErrorAction SilentlyContinue
+          Write-Output "Cleaned"
+
 
       - name: Build .exe using PyInstaller
         run: pyinstaller --onefile main.py
