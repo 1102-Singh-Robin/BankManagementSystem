@@ -1,8 +1,8 @@
 class Account:
-    def __init__(self, accountNum, ownerName, balance):
+    def __init__(self, accountNum, ownerName):
         self.accountNumber = accountNum
         self.ownerName = ownerName
-        self.balance = balance
+        self.balance = 0
 
     def deposit(self, amount):
         self.balance += amount
@@ -23,13 +23,3 @@ class Account:
                 Account Number: {self.accountNumber}
                 Balance: {self.balance}"""
     
-
-ab = Account(12345, "Robin", 123.40)
-print(ab.__str__())
-        
-# ### Implementation Steps:
-# 1. Create the `Account` class with deposit and withdrawal methods.
-# 2. Develop the `Customer` class to manage multiple accounts.
-# 3. Implement the `Transaction` class for handling money transfers.
-# 4. Build the `Bank` class to store customers and their accounts.
-# 5. In the main execution block, create instances, perform transactions, and print results.
