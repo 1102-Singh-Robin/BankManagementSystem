@@ -69,6 +69,7 @@ jobs:
           path: coverage.txt
 
       - name: Create GitHub Release
+        id: create_release 
         if: github.ref == 'refs/heads/main'
         uses: actions/create-release@v1
         env:
@@ -78,6 +79,7 @@ jobs:
           release_name: Release v${{ github.run_number }}
           draft: false
           prerelease: false
+
       
       - name: Upload .exe to GitHub Release
         if: github.ref == 'refs/heads/main'
