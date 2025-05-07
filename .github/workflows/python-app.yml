@@ -1,17 +1,17 @@
-name: Python Linux Build and Release
+name: Python Windows Build and Release
 
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-    
+
 permissions:
   contents: write
-  
+
 jobs:
   build-and-release:
-    runs-on: ubuntu-20.04
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -35,10 +35,11 @@ jobs:
 
     - name: Clean previous build
       run: |
-        rm -rf build dist __pycache__ main.spec || echo "Nothing to clean"
-        echo "Cleaned"
+        Remove-Item -Recurse -Force build, dist, __pycache__ -ErrorAction SilentlyContinue
+        Remove-Item -Force main.spec -ErrorAction SilentlyContinue
+        Write-Output "Cleaned"
 
-    - name: Build Linux binary with PyInstaller
+    - name: Build Windows .exe with PyInstaller
       run: pyinstaller --onefile main.py
 
     - name: Create GitHub Release
@@ -53,13 +54,13 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Linux binary to GitHub Release
+    - name: Upload Windows .exe to GitHub Release
       if: github.ref == 'refs/heads/main'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/main
-        asset_name: main-linux
+        asset_path: dist/main.exe
+        asset_name: main.exe
         asset_content_type: application/octet-stream
