@@ -1,0 +1,15 @@
+Name                                 Stmts   Miss  Cover
+--------------------------------------------------------
+Account.py                              15      1    93%
+Bank.py                                 17      2    88%
+Customer.py                             18      0   100%
+Transaction.py                           7      0   100%
+loan.py                                 31      2    94%
+tests/test_account.py                   19      1    95%
+tests/test_bank.py                      11      6    45%
+tests/test_bankManagementSystem.py      68      1    99%
+tests/test_customer.py                  17      1    94%
+tests/test_loan.py                      20      1    95%
+tests/test_transaction.py               15      1    93%
+--------------------------------------------------------
+TOTAL                                  238     16    93%
