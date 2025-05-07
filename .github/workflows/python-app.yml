@@ -35,6 +35,8 @@ jobs:
 
     - name: Upload coverage.txt to repo
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      env:
+        GH_PAT: ${{secrets.GH_PAT}}
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
