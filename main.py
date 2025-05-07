@@ -101,7 +101,7 @@ def main():
                 print("Invalid customer ID.")
 
         elif choice == "0":
-            print("Thank you for using Fusion Bank!")
+            print("Thank you for using US Bank!")
             break
 
         else:
