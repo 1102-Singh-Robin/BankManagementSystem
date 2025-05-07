@@ -41,17 +41,22 @@ jobs:
         git commit -m "Add coverage report [CI]" || echo "No changes to commit"
         git push origin main || echo "Push skipped on PR"
 
+    - name: Clean previous build 
+      run: |
+        rm -rf build/ dist/ __pycache__/
+        rm -f main.spec
+        
     - name: Build .exe using PyInstaller
       run: pyinstaller --onefile main.py
 
     - name: Upload .exe
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.3
       with:
         name: main-executable
         path: dist/main.exe
 
     - name: Upload coverage report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.3
       with:
         name: coverage-report
         path: coverage.txt
